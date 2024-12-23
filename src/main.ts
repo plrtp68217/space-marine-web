@@ -11,7 +11,7 @@ const resizeCanvas = (): void => {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-const ship_coordinates = new Coordinates(50, 50);
+const ship_coordinates = new Coordinates(100, 200);
 const ship = new Ship(ship_coordinates);
 
 
@@ -20,8 +20,6 @@ function render(): void {
   ctx.fillRect(ship.coordinates.x, ship.coordinates.y, 10, 10);
   requestAnimationFrame(render)
 }
-
-console.log(123);
 
 
 render()

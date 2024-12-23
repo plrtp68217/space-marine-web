@@ -2,12 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Silkscreen&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <script type="module" src="dist/main.js" defer></script>
     <title>Document</title>
 </head>
 <body>
+
     <canvas id="canvas" style="width: 100%; height: 100%;"></canvas>
+
+    <div class="layout">
+        
+        <div class="layout__lives">
+            <div>*</div>
+            <div>*</div>
+            <div>*</div>
+            <div>*</div>
+        </div>
+
+        <div class="layout__score">
+            Score: 123
+        </div>
+
+    </div>
+
+    <div class="gamebar">
+        <!--  -->
+        <div class="gamebar__buttons">
+
+            <button class="gamebar__button">top</button>
+
+            <div>
+                <button class="gamebar__button">left</button>
+                <button class="gamebar__button">right</button>
+            </div>
+            
+            <button class="gamebar__button">down</button>
+
+        </div>
+    </div>
+
 </body>
 </html>
