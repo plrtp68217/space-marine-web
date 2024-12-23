@@ -1,4 +1,4 @@
-import { Coordinates } from '../entities/Coordinates';
+import { Coordinates } from '../entities/Coordinates.js';
 
 export class LinearMovement {
     coordinates: Coordinates;
