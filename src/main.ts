@@ -43,7 +43,6 @@ let bullets: Bullet[] = [];
 
 
 function game(timestamp: number): void {
-
   const deltaTime = timestamp - lastTime;
   lastTime = timestamp;
 
@@ -54,7 +53,7 @@ function game(timestamp: number): void {
   if (ship.isDragging) startShipShootingInterval(bullets, ship);
   else stopShipShootingInterval();
   
-  moveBullets(bullets);
+  moveBullets(bullets, deltaTime);
   drawBullets(bullets, ctx);
 
   removeOffscreenBullets(bullets, canvas);
