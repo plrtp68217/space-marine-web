@@ -37,13 +37,22 @@ canvas.addEventListener('touchmove', (event: TouchEvent) => touchMoveShip(event,
 canvas.addEventListener('touchend', () => touchDropShip(ship));
 
 
+let lastTime: number = 0;
+
 let bullets: Bullet[] = [];
 
 
-function game(): void {
+function game(timestamp: number): void {
+
+  const deltaTime = timestamp - lastTime;
+  lastTime = timestamp;
+
   drawClear(canvas, ctx);
-  
+
   drawShip(ship, ctx);
+
+  if (ship.isDragging) startShipShootingInterval(bullets, ship);
+  else stopShipShootingInterval();
   
   moveBullets(bullets);
   drawBullets(bullets, ctx);
@@ -53,5 +62,4 @@ function game(): void {
   requestAnimationFrame(game);
 }
 
-startShipShootingInterval(bullets, ship);
-game();
+requestAnimationFrame(game);
