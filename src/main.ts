@@ -15,6 +15,8 @@ import { touchDragShip, touchDropShip, touchMoveShip } from "./ship/movement/tou
 import { startShipShootingInterval, stopShipShootingInterval } from "./ship/shooting/shoot.js";
 
 import { moveBullets } from "./bullets/ship_bullets/movement/moveBullets.js";
+import { removeOffscreenBullets } from "./bullets/filtering.js";
+
 
 let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
 let ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -37,19 +39,19 @@ canvas.addEventListener('touchend', () => touchDropShip(ship));
 
 let bullets: Bullet[] = [];
 
-startShipShootingInterval(bullets, ship)
 
-
-function render(): void {
+function game(): void {
   drawClear(canvas, ctx);
   
   drawShip(ship, ctx);
-
-  moveBullets(bullets)
-  drawBullets(bullets, ctx)
   
+  moveBullets(bullets);
+  drawBullets(bullets, ctx);
 
-  requestAnimationFrame(render)
+  removeOffscreenBullets(bullets, canvas);
+  
+  requestAnimationFrame(game);
 }
 
-render();
+startShipShootingInterval(bullets, ship);
+game();

@@ -19,6 +19,6 @@ export function startShipShootingInterval(bullets: Bullet[], ship: Ship): void {
     shipShootingInterval = setInterval(() => addShipBullet(bullets, ship), 300);
 }
 
-export function stopShipShootingInterval(ship: Ship): void {
+export function stopShipShootingInterval(): void {
     clearInterval(shipShootingInterval);
 }
