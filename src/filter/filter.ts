@@ -5,10 +5,10 @@ interface IOnScreenElement {
 }
 
 /**
- * Функция для определения пули в области игрового поля.
- * @param bullet - Отслеживаемый элемент.
+ * Функция для определения элемента в области игрового поля.
+ * @param onScreenElement - Отслеживаемый элемент.
  * @param canvas - Игровое поле.
- * @returns boolean : true - пуля в пределах поля, false - за пределами поля.
+ * @returns boolean : true - элемент в пределах поля, false - за пределами поля.
  */
 
 function isOnScreen(onScreenElement: IOnScreenElement, canvas: HTMLCanvasElement): boolean {

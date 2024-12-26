@@ -7,11 +7,13 @@ import { Bullet } from "./entities/Bullet.js";
 import { drawBullets } from "./draw-functions/drawBullets.js";
 import { drawShip } from "./draw-functions/drawShip.js";
 import { drawClear } from "./draw-functions/drawClear.js";
+import { drawEnemys } from "./draw-functions/drawEnemys.js";
 
 import { mouseDragShip, mouseDropShip, mouseMoveShip } from "./ship/movement/mouse/moveShip.js";
 import { touchDragShip, touchDropShip, touchMoveShip } from "./ship/movement/touch/moveShip.js";
 
 import { startShipShootingInterval, stopShipShootingInterval } from "./ship/shooting/shoot.js";
+import { startSpawnEnemyInterval, stopSpawnEnemysInterval } from "./enemys/spawn/spawn.js";
 
 import { moveBullets } from "./bullets/ship_bullets/movement/moveBullets.js";
 import { removeOffscreenElements } from "./filter/filter.js";
@@ -39,25 +41,32 @@ canvas.addEventListener('touchend', () => touchDropShip(ship));
 let lastTime: number = 0;
 
 let bullets: Bullet[] = [];
+let enemys: Ship[] = [];
 
 
 function game(timestamp: number): void {
   const deltaTime = timestamp - lastTime;
   lastTime = timestamp;
 
+  if (ship.isDragging) startShipShootingInterval(bullets, ship);
+  else stopShipShootingInterval();
+
   drawClear(canvas, ctx);
 
   drawShip(ship, ctx);
 
-  if (ship.isDragging) startShipShootingInterval(bullets, ship);
-  else stopShipShootingInterval();
-  
-  moveBullets(bullets, deltaTime);
   drawBullets(bullets, ctx);
+  moveBullets(bullets, deltaTime);
+
+  drawEnemys(enemys, ctx);
 
   removeOffscreenElements(bullets, canvas);
+  removeOffscreenElements(enemys, canvas);
+  console.log(enemys);
+  
   
   requestAnimationFrame(game);
 }
 
+startSpawnEnemyInterval(enemys, canvas);
 requestAnimationFrame(game);

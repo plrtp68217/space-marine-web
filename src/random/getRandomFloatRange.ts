@@ -1,3 +1,3 @@
-export const getRandomFloatRange = (min: number, max: number) => {
+export function getRandomFloatRange(min: number, max: number): number {
     return Math.random() * (max - min) + min;
 }

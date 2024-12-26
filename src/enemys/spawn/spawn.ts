@@ -1,13 +1,28 @@
-import { Ship } from "../../entities/Ship";
-import { Coordinates } from "../../entities/Coordinates";
+import { Ship } from "../../entities/Ship.js";
+import { Coordinates } from "../../entities/Coordinates.js";
+import { getRandomIntRange } from "../../random/getRandomIntRange.js";
+import { getRandomFloatRange } from "../../random/getRandomFloatRange.js";
 
-export function addStars(enemys: Ship[], canvas: HTMLCanvasElement) {
-    const enemy_coordinates = new Coordinates()
-    const enemy = new Ship(ship_coordinates, 40, 10, 5, 3, 0);
+function addEnemy(enemys: Ship[], canvas: HTMLCanvasElement): void {
+    const enemyWidth = getRandomIntRange(10, 40);
+    const enemyHeight= getRandomIntRange(10, 40);
+    const enemyX = getRandomIntRange(0, canvas.width);
+    const enemyY = -enemyHeight;
+    const enemySpeed = getRandomFloatRange(0.2, 0.4);
+    const enemy_coordinates = new Coordinates(enemyX, enemyY)
+    const enemy = new Ship(enemy_coordinates, enemyWidth, enemyHeight, 5, 3, enemySpeed);
+    enemys.push(enemy)
+}
 
-    enemys.push({
-        x: Math.floor(Math.random() * (canvas.width - star_parameter)),
-        y: - star_parameter,
-        speed: getRandomRange(0.2, 0.4),
-    });
+
+let spawnEnemyInterval: number | NodeJS.Timeout | undefined ;
+
+
+export function startSpawnEnemyInterval(enemys: Ship[], canvas: HTMLCanvasElement): void {
+    if (!spawnEnemyInterval) spawnEnemyInterval = setInterval(() => addEnemy(enemys, canvas), 300);
+}
+
+export function stopSpawnEnemysInterval(): void {
+    clearInterval(spawnEnemyInterval);
+    spawnEnemyInterval = undefined;
 }
