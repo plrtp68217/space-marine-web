@@ -14,7 +14,7 @@ import { touchDragShip, touchDropShip, touchMoveShip } from "./ship/movement/tou
 import { startShipShootingInterval, stopShipShootingInterval } from "./ship/shooting/shoot.js";
 
 import { moveBullets } from "./bullets/ship_bullets/movement/moveBullets.js";
-import { removeOffscreenElements } from "./filtering/filter.js";
+import { removeOffscreenElements } from "./filter/filter.js";
 
 let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
 let ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
