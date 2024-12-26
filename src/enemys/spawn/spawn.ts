@@ -26,3 +26,24 @@ export function stopSpawnEnemysInterval(): void {
     clearInterval(spawnEnemyInterval);
     spawnEnemyInterval = undefined;
 }
+
+// -----
+// import { Coordinates } from "../../entities/Coordinates";
+// import { Ship } from "../../entities/Ship";
+
+// /**
+//  * Проверка на попадание пули в корабль
+//  **/
+// function hitChecking(ships: Ship[]): void {
+
+// }
+
+// /**
+//  * Функция для определения элемента в области игрового поля.
+//  * @param coordinates - Кординаты места, в котором зарегистрировано попадание.
+//  * @param squareSize - Размер одного квадрата, из которого будет собран
+//  * большой квадрат, состоящий из 9 подквадратов.
+//  */
+// function hitRegistration(coordinates: Coordinates, squareSize: number, deltaTime: number): void {
+    
+// }

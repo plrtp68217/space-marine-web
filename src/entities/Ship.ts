@@ -9,6 +9,7 @@ export class Ship {
     public health: number, 
     public armor: number, 
     public speed: number,
+    public isCrashed?: boolean, 
     public type?: string, 
     public isDragging: boolean = false,
   ) {}
