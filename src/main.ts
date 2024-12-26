@@ -16,6 +16,7 @@ import { startShipShootingInterval, stopShipShootingInterval } from "./ship/shoo
 import { startSpawnEnemyInterval, stopSpawnEnemysInterval } from "./enemys/spawn/spawn.js";
 
 import { moveBullets } from "./bullets/ship_bullets/movement/moveBullets.js";
+import { moveEnemys } from "./enemys/movement/move.js";
 import { removeOffscreenElements } from "./filter/filter.js";
 
 let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
@@ -38,11 +39,11 @@ canvas.addEventListener('touchmove', (event: TouchEvent) => touchMoveShip(event,
 canvas.addEventListener('touchend', () => touchDropShip(ship));
 
 
-let lastTime: number = 0;
 
 let bullets: Bullet[] = [];
 let enemys: Ship[] = [];
 
+let lastTime: number = 0;
 
 function game(timestamp: number): void {
   const deltaTime = timestamp - lastTime;
@@ -59,11 +60,10 @@ function game(timestamp: number): void {
   moveBullets(bullets, deltaTime);
 
   drawEnemys(enemys, ctx);
+  moveEnemys(enemys, deltaTime)
 
   removeOffscreenElements(bullets, canvas);
   removeOffscreenElements(enemys, canvas);
-  console.log(enemys);
-  
   
   requestAnimationFrame(game);
 }
