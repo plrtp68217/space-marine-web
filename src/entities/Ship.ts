@@ -8,8 +8,8 @@ export class Ship {
     public height: number, 
     public health: number, 
     public armor: number, 
-    public type: string, 
-    public speed?: number,
+    public speed: number,
+    public type?: string, 
     public isDragging: boolean = false,
   ) {}
 }
