@@ -1,7 +1,6 @@
 import { Coordinates } from './Coordinates.js';
 
 export class Ship {
-
   constructor
   (
     public coordinates: Coordinates,
