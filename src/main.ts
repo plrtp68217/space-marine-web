@@ -5,7 +5,6 @@ import { Coordinates } from "./entities/Coordinates.js";
 import { Bullet } from "./entities/Bullet.js";
 
 import { drawBullets } from "./draw-functions/drawBullets.js";
-import { drawEnemys } from "./draw-functions/drawEnemys.js"; 
 import { drawShip } from "./draw-functions/drawShip.js";
 import { drawClear } from "./draw-functions/drawClear.js";
 
@@ -25,7 +24,7 @@ const shipStartX = canvas.width / 2;
 const shipStartY = (canvas.height * 7) / 8;
 
 const ship_coordinates = new Coordinates(shipStartX, shipStartY);
-const ship = new Ship(ship_coordinates, 40, 10);
+const ship = new Ship(ship_coordinates, 40, 10, 5, 3, 'default');
 
 
 canvas.addEventListener('mousedown', () => mouseDragShip(ship));
