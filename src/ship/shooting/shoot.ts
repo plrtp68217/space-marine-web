@@ -6,7 +6,7 @@ function addShipBullet(bullets: Bullet[], ship: Ship): void {
     const bulletX = ship.coordinates.x ;
     const bulletY = ship.coordinates.y ;
     const bullet_coordinates = new Coordinates(bulletX, bulletY);
-    const bullet = new Bullet(bullet_coordinates);
+    const bullet = new Bullet(bullet_coordinates, 5);
     bullets.push(bullet);
 }
 
