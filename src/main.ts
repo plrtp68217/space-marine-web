@@ -33,7 +33,7 @@ const shipStartY = (canvas.height * 7) / 8;
 
 const ship_coordinates = new Coordinates(shipStartX, shipStartY);
 //                                      w   h   he ar sp
-const ship = new Ship(ship_coordinates, 40, 10, 5, 3, 0);
+const ship = new Ship(ship_coordinates, 50, 50, 5, 3, 0);
 
 
 canvas.addEventListener('mousedown', () => mouseDragShip(ship));
@@ -73,7 +73,7 @@ function game(timestamp: number): void {
     hit.hittedShip.health -= 1;
     
     startExplosion(explosions, hit.coordinates, 100);
-    
+
     if (hit.hittedShip.health === 0) {
       const hittedShipIndex = enemys.findIndex(enemy => enemy.coordinates.x === hit.hittedShip.coordinates.x &&
                                                         enemy.coordinates.y === hit.hittedShip.coordinates.y

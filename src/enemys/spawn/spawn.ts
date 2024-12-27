@@ -4,13 +4,12 @@ import { getRandomIntRange } from "../../random/getRandomIntRange.js";
 import { getRandomFloatRange } from "../../random/getRandomFloatRange.js";
 
 function addEnemy(enemys: Ship[], canvas: HTMLCanvasElement): void {
-    const enemyWidth = getRandomIntRange(20, 40);
-    const enemyHeight= getRandomIntRange(20, 40);
-    const enemyX = getRandomIntRange(10, canvas.width - enemyWidth);
+    const enemySize = getRandomIntRange(30, 50);
+    const enemyX = getRandomIntRange(10, canvas.width - enemySize);
     const enemyY = 0;
     const enemySpeed = getRandomFloatRange(0.2, 0.4);
     const enemy_coordinates = new Coordinates(enemyX, enemyY)
-    const enemy = new Ship(enemy_coordinates, enemyWidth, enemyHeight, 2, 3, enemySpeed);
+    const enemy = new Ship(enemy_coordinates, enemySize, enemySize, 2, 3, enemySpeed);
     enemys.push(enemy)
 }
 
