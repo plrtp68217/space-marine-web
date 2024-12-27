@@ -3,6 +3,7 @@ import "./options/resizeCanvas.js";
 import { Ship } from "./entities/Ship.js";
 import { Coordinates } from "./entities/Coordinates.js";
 import { Bullet } from "./entities/Bullet.js";
+import { Explosion } from "./entities/Explosion.js";
 
 import { drawBullets } from "./draw-functions/drawBullets.js";
 import { drawShip } from "./draw-functions/drawShip.js";
@@ -21,6 +22,8 @@ import { moveEnemys } from "./enemys/movement/move.js";
 import { removeOffscreenElements } from "./filter/filterScreen.js";
 
 import { hitRegistration } from "./bullets/hitRegistration.js";
+
+import { startExplosion, updateExplosions, drawExplosions } from "./animations/explosion/explosion.js";
 
 let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
 let ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -45,12 +48,14 @@ canvas.addEventListener('touchend', () => touchDropShip(ship));
 
 let bullets: Bullet[] = [];
 let enemys: Ship[] = [];
+let explosions: Explosion[] = [];
 
 let lastTime: number = 0;
 
 function game(timestamp: number): void {
   const deltaTime = timestamp - lastTime;
   lastTime = timestamp;
+  updateExplosions(explosions)
 
   if (ship.isDragging) startShipShootingInterval(bullets, ship);
   else stopShipShootingInterval();
@@ -65,7 +70,9 @@ function game(timestamp: number): void {
   const hit =  hitRegistration(bullets, [ship, ...enemys])
   if(hit) {
     bullets.splice(hit.bulletIndex, 1);
+    startExplosion(explosions, hit.coordinates, 200);
   }
+  drawExplosions(ctx, explosions)
 
   drawEnemys(enemys, ctx);
   moveEnemys(enemys, deltaTime)

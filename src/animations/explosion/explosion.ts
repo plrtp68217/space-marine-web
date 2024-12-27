@@ -17,7 +17,7 @@ export function updateExplosions(explosions: Explosion[]): void {
     }); // переделать (без смены ссылки на массив/ мб не надо)
 }
 
-export function drawExplosions(ctx: CanvasRenderingContext2D, explosions: Explosion[]): void {
+export function drawExplosions(context: CanvasRenderingContext2D, explosions: Explosion[]): void {
     const currentTime = performance.now();
 
     explosions.forEach(explosion => {
@@ -28,9 +28,9 @@ export function drawExplosions(ctx: CanvasRenderingContext2D, explosions: Explos
         const radius = 50 * progress; // Радиус увеличивается со временем
         const opacity = 1 - progress; // Прозрачность уменьшается со временем
 
-        ctx.beginPath();
-        ctx.arc(explosion.coordinates.x, explosion.coordinates.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 0, 0, ${opacity})`;
-        ctx.fill();
+        context.beginPath();
+        context.arc(explosion.coordinates.x, explosion.coordinates.y, radius, 0, Math.PI * 2);
+        context.fillStyle = `rgba(255, 0, 0, ${opacity})`;
+        context.fill();
     });
 }
