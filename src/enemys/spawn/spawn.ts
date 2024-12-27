@@ -19,31 +19,10 @@ let spawnEnemyInterval: number | NodeJS.Timeout | undefined ;
 
 
 export function startSpawnEnemyInterval(enemys: Ship[], canvas: HTMLCanvasElement): void {
-    if (!spawnEnemyInterval) spawnEnemyInterval = setInterval(() => addEnemy(enemys, canvas), 300);
+    if (!spawnEnemyInterval) spawnEnemyInterval = setInterval(() => addEnemy(enemys, canvas), 1000);
 }
 
 export function stopSpawnEnemysInterval(): void {
     clearInterval(spawnEnemyInterval);
     spawnEnemyInterval = undefined;
 }
-
-// -----
-// import { Coordinates } from "../../entities/Coordinates";
-// import { Ship } from "../../entities/Ship";
-
-// /**
-//  * Проверка на попадание пули в корабль
-//  **/
-// function hitChecking(ships: Ship[]): void {
-
-// }
-
-// /**
-//  * Функция для определения элемента в области игрового поля.
-//  * @param coordinates - Кординаты места, в котором зарегистрировано попадание.
-//  * @param squareSize - Размер одного квадрата, из которого будет собран
-//  * большой квадрат, состоящий из 9 подквадратов.
-//  */
-// function hitRegistration(coordinates: Coordinates, squareSize: number, deltaTime: number): void {
-    
-// }

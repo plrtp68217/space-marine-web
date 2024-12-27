@@ -1,23 +1,23 @@
-import { Explosion } from "../entities/Explosion";
-import { Coordinates } from "../entities/Coordinates";
+import { Explosion } from "../../entities/Explosion.js";
+import { Coordinates } from "../../entities/Coordinates.js";
 
-function startExplosion(explosions: Explosion[], coordinates: Coordinates, duration: number) {
+export function startExplosion(explosions: Explosion[], coordinates: Coordinates, duration: number): void {
     const startTime = performance.now();
     const explosion = new Explosion(coordinates, startTime, duration);
     explosions.push(explosion);
 }
 
-function updateExplosions(explosions: Explosion[]) {
+export function updateExplosions(explosions: Explosion[]): void {
     const currentTime = performance.now();
 
     // Удаляем завершенные анимации
     explosions = explosions.filter(explosion => {
         const elapsedTime = currentTime - explosion.startTime;
         return elapsedTime < explosion.duration;
-    });
+    }); // переделать (без смены ссылки на массив/ мб не надо)
 }
 
-function drawExplosions(ctx: CanvasRenderingContext2D, explosions: Explosion[]) {
+export function drawExplosions(ctx: CanvasRenderingContext2D, explosions: Explosion[]): void {
     const currentTime = performance.now();
 
     explosions.forEach(explosion => {

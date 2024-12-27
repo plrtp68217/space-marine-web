@@ -17,7 +17,10 @@ import { startSpawnEnemyInterval, stopSpawnEnemysInterval } from "./enemys/spawn
 
 import { moveBullets } from "./bullets/ship_bullets/movement/moveBullets.js";
 import { moveEnemys } from "./enemys/movement/move.js";
-import { removeOffscreenElements } from "./filter/filter.js";
+
+import { removeOffscreenElements } from "./filter/filterScreen.js";
+
+import { hitRegistration } from "./bullets/hitRegistration.js";
 
 let canvas = document.querySelector('#canvas') as HTMLCanvasElement;
 let ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -58,6 +61,11 @@ function game(timestamp: number): void {
 
   drawBullets(bullets, ctx);
   moveBullets(bullets, deltaTime);
+
+  const hit =  hitRegistration(bullets, [ship, ...enemys])
+  if(hit) {
+    bullets.splice(hit.bulletIndex, 1);
+  }
 
   drawEnemys(enemys, ctx);
   moveEnemys(enemys, deltaTime)
