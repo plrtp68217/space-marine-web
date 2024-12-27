@@ -68,6 +68,7 @@ function game(timestamp: number): void {
   
   const hit =  hitRegistration(bullets, [ship, ...enemys])
   if(hit) {
+    
     bullets.splice(hit.bulletIndex, 1);
     hit.hittedShip.health -= 1;
     
@@ -79,6 +80,7 @@ function game(timestamp: number): void {
       )
       enemys.splice(hittedShipIndex, 1)
     }
+
   }
   
   drawExplosions(ctx, explosions)
