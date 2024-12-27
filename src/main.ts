@@ -55,7 +55,7 @@ let lastTime: number = 0;
 function game(timestamp: number): void {
   const deltaTime = timestamp - lastTime;
   lastTime = timestamp;
-  updateExplosions(explosions)
+  explosions = updateExplosions(explosions);
 
   if (ship.isDragging) startShipShootingInterval(bullets, ship);
   else stopShipShootingInterval();
@@ -70,8 +70,18 @@ function game(timestamp: number): void {
   const hit =  hitRegistration(bullets, [ship, ...enemys])
   if(hit) {
     bullets.splice(hit.bulletIndex, 1);
-    startExplosion(explosions, hit.coordinates, 200);
-  }
+    hit.hittedShip.health -= 1;
+    
+    startExplosion(explosions, hit.coordinates, 100);
+    
+    if (hit.hittedShip.health === 0) {
+      const hittedShipIndex = enemys.findIndex(enemy => enemy.coordinates.x === hit.hittedShip.coordinates.x &&
+                                                        enemy.coordinates.y === hit.hittedShip.coordinates.y
+      )
+      enemys.splice(hittedShipIndex, 1)
+      }
+    }
+  
   drawExplosions(ctx, explosions)
 
   drawEnemys(enemys, ctx);

@@ -7,14 +7,16 @@ export function startExplosion(explosions: Explosion[], coordinates: Coordinates
     explosions.push(explosion);
 }
 
-export function updateExplosions(explosions: Explosion[]): void {
+export function updateExplosions(explosions: Explosion[]): Explosion[] {
     const currentTime = performance.now();
 
     // Удаляем завершенные анимации
     explosions = explosions.filter(explosion => {
         const elapsedTime = currentTime - explosion.startTime;
         return elapsedTime < explosion.duration;
-    }); // переделать (без смены ссылки на массив/ мб не надо)
+    }); 
+
+    return explosions;
 }
 
 export function drawExplosions(context: CanvasRenderingContext2D, explosions: Explosion[]): void {
@@ -24,7 +26,7 @@ export function drawExplosions(context: CanvasRenderingContext2D, explosions: Ex
         const elapsedTime = currentTime - explosion.startTime;
         const progress = elapsedTime / explosion.duration;
 
-        // Пример: рисуем круги с изменяющимся радиусом и прозрачностью
+        // Рисуем круги с изменяющимся радиусом и прозрачностью
         const radius = 50 * progress; // Радиус увеличивается со временем
         const opacity = 1 - progress; // Прозрачность уменьшается со временем
 

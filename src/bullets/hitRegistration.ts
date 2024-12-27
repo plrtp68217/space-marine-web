@@ -14,16 +14,17 @@ function isHitted(bullet: Bullet, ship: Ship): boolean {
 }
 
 interface IHit {
+    hittedShip: Ship;
     coordinates: Coordinates;
-    bulletIndex: number
+    bulletIndex: number;
 }
 
 export function hitRegistration(bullets: Bullet[], ships: Ship[]): IHit | void {
     for (let bullet = bullets.length - 1; bullet >= 0; bullet--) {
         for (let ship = ships.length - 1; ship >= 0; ship--) {
             if (isHitted(bullets[bullet], ships[ship])) {
-                // bullets.splice(bullet, 1);
                 return {
+                    hittedShip: ships[ship],
                     coordinates: bullets[bullet].coordinates,
                     bulletIndex:  bullet
                 }
