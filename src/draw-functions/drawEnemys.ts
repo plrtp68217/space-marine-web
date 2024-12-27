@@ -1,8 +1,12 @@
 import { Ship } from "../entities/Ship.js";
 
+const enemyImg = new Image();
+enemyImg.src = '/src/enemys/images/enemyShip.png'
+
+
 function drawEnemy(enemy: Ship, context: CanvasRenderingContext2D): void {
-    context.fillStyle = 'white';
-    context.fillRect(enemy.coordinates.x, enemy.coordinates.y, enemy.width, enemy.height);
+    context.drawImage(enemyImg, enemy.coordinates.x, enemy.coordinates.y, enemy.width, enemy.height);
+
 }
 
 export function drawEnemys(enemys: Ship[], context: CanvasRenderingContext2D) {
